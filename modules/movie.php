@@ -1,21 +1,37 @@
 <?php
 
-class Genere {
-    public string $titolo;
-    public string $descrizione;
-    public string $pathImg;
+class Genere
+{
+    private string $nome;
+    private string $descrizione;
 
-    public function __construct(string $titolo, string $descrizione, string $pathImg)
+    public function __construct(string $nome, string $descrizione)
     {
-        $this->titolo = $titolo;
         $this->descrizione = $descrizione;
-        $this->pathImg = $pathImg;
+        $this->setGenere($nome);
     }
-  
-    function setTitle($titolo) {
-        $this->titolo = $titolo;
+
+    public function setGenere(string $nome)
+    {
+        if (strlen($nome) <= 30) 
+        {
+            $this->nome = $nome;
+        } 
+        else 
+        {
+            throw new Exception("IL NOME DEL GENERE E` TROPPO LUNGO. DEVE ESSERE MENO DI 30 CARATTERI.");
+        }
     }
-    function getTitle() {
-        return $this->titolo;
+    public function getNome(): string 
+    {
+        return $this->nome;
+    }
+    public function setDescrizione($descrizione)
+    {
+        $this->descrizione = $descrizione;
+    }
+    public function getDescrizione()
+    {
+        return $this->descrizione;
     }
 }
